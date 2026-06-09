@@ -56,14 +56,14 @@ export default function GalleryHeader({
         >
           <Settings2 className="w-4 h-4" /> <span className="hidden md:inline">Technical</span>
         </button>
-        <button
+        {/* <button
           onClick={() => setActiveMode('grid')}
           className={`flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all ${
             activeMode === 'grid' ? 'bg-space-black text-soft-amber shadow-sm' : 'text-white/50 hover:text-white'
           }`}
         >
           <LayoutGrid className="w-4 h-4" /> <span className="hidden md:inline">Grid</span>
-        </button>
+        </button> */}
       </div>
       
     </div>

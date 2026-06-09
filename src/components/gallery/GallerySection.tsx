@@ -15,13 +15,13 @@ export default function GallerySection() {
   const [activeProject, setActiveProject] = useState<GalleryProject | null>(null);
 
   // Force grid view on mobile initially
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setActiveMode('grid');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (window.innerWidth < 768) {
+  //     setActiveMode('grid');
+  //   }
+  // }, []);
 
-  const categories: (ProjectCategory | 'All')[] = ['All', 'VFX', '3D Design', 'Motion Graphics', 'Branding'];
+  const categories: (ProjectCategory | 'All')[] = ['All', 'VFX', 'Video Editing', '2D Design', '3D Design', 'Branding'];
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === 'All') return galleryData;
@@ -51,7 +51,7 @@ export default function GallerySection() {
         <div className="w-full flex-1 mt-8 transition-opacity duration-500">
           {activeMode === 'cinematic' && <CinematicView projects={filteredProjects} onProjectClick={setActiveProject} />}
           {activeMode === 'technical' && <TechnicalView projects={filteredProjects} onProjectClick={setActiveProject} />}
-          {activeMode === 'grid' && <GridView projects={filteredProjects} onProjectClick={setActiveProject} />}
+          {/* {activeMode === 'grid' && <GridView projects={filteredProjects} onProjectClick={setActiveProject} />} */}
         </div>
       </div>
 

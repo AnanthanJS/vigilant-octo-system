@@ -1,4 +1,4 @@
-export type ProjectCategory = 'VFX' | 'Branding' | 'Motion Graphics' | '3D Design';
+export type ProjectCategory = 'VFX' | 'Branding' | 'Video Editing' | '2D Design'| '3D Design';
 
 export interface GalleryProject {
   id: string;
@@ -28,7 +28,7 @@ export const galleryData: GalleryProject[] = [
     id: 'glimpse-of-trivandrum',
     title: 'Glimpse of Trivandrum',
     client: 'Personal Project',
-    category: 'Motion Graphics',
+    category: 'Video Editing',
     thumbnailUrl: '/memories/Sequence 06_1.mp4',
     videoUrl: '/memories/Sequence 06_1.mp4',
     rawImageUrl: '/memories/Business-Card-Mockup-1.jpg', // Placeholder for before/after demo
@@ -51,7 +51,7 @@ export const galleryData: GalleryProject[] = [
     id: 'captain-a',
     title: 'Captain A Character Model',
     client: 'Studio X',
-    category: '3D Design',
+    category: '2D Design',
     thumbnailUrl: '/memories/Captain A mockup.png',
     rawImageUrl: '/memories/Captain A mockup.png',
     finalImageUrl: '/memories/Captain A mockup.png',

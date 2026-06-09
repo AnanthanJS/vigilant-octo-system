@@ -95,9 +95,15 @@ export default function TechnicalView({ projects, onProjectClick }: TechnicalVie
             )}
 
             <div className="pt-6 border-t border-white/10 flex gap-4">
-              <button className="flex items-center gap-2 px-6 py-3 bg-cosmic-violet hover:bg-cosmic-violet/80 text-white font-mono text-xs uppercase tracking-widest rounded transition-colors">
-                <Download className="w-4 h-4" /> Pipeline Notes (PDF)
-              </button>
+              <a 
+                href={project.videoUrl || project.thumbnailUrl} 
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-cosmic-violet hover:bg-cosmic-violet/80 text-white font-mono text-xs uppercase tracking-widest rounded transition-colors"
+              >
+                <Download className="w-4 h-4" /> Download Media
+              </a>
             </div>
             
           </div>
