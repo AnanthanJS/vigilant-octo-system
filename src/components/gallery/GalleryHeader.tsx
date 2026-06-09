@@ -1,11 +1,11 @@
 'use client';
 
 import { ProjectCategory } from '@/lib/gallery-data';
-import { LayoutGrid, Film, Settings2 } from 'lucide-react';
+import { Box, Film, Settings2 } from 'lucide-react';
 
 interface GalleryHeaderProps {
-  activeMode: 'cinematic' | 'technical' | 'grid';
-  setActiveMode: (mode: 'cinematic' | 'technical' | 'grid') => void;
+  activeMode: 'cinematic' | 'technical' | 'tesseract';
+  setActiveMode: (mode: 'cinematic' | 'technical' | 'tesseract') => void;
   activeCategory: ProjectCategory | 'All';
   setActiveCategory: (category: ProjectCategory | 'All') => void;
   categories: (ProjectCategory | 'All')[];
@@ -56,14 +56,14 @@ export default function GalleryHeader({
         >
           <Settings2 className="w-4 h-4" /> <span className="hidden md:inline">Technical</span>
         </button>
-        {/* <button
-          onClick={() => setActiveMode('grid')}
+        <button
+          onClick={() => setActiveMode('tesseract')}
           className={`flex items-center gap-2 px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all ${
-            activeMode === 'grid' ? 'bg-space-black text-soft-amber shadow-sm' : 'text-white/50 hover:text-white'
+            activeMode === 'tesseract' ? 'bg-space-black text-soft-amber shadow-sm' : 'text-white/50 hover:text-white'
           }`}
         >
-          <LayoutGrid className="w-4 h-4" /> <span className="hidden md:inline">Grid</span>
-        </button> */}
+          <Box className="w-4 h-4" /> <span className="hidden md:inline">Tesseract</span>
+        </button>
       </div>
       
     </div>

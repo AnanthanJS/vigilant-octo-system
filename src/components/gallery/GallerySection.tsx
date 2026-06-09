@@ -5,12 +5,14 @@ import { galleryData, ProjectCategory } from '@/lib/gallery-data';
 import GalleryHeader from './GalleryHeader';
 import CinematicView from './views/CinematicView';
 import TechnicalView from './views/TechnicalView';
-import GridView from './views/GridView';
+import dynamic from 'next/dynamic';
+
+const TesseractView = dynamic(() => import('./views/TesseractView'), { ssr: false });
 import ProjectModal from './ProjectModal';
 import { GalleryProject } from '@/lib/gallery-data';
 
 export default function GallerySection() {
-  const [activeMode, setActiveMode] = useState<'cinematic' | 'technical' | 'grid'>('cinematic');
+  const [activeMode, setActiveMode] = useState<'cinematic' | 'technical' | 'tesseract'>('cinematic');
   const [activeCategory, setActiveCategory] = useState<ProjectCategory | 'All'>('All');
   const [activeProject, setActiveProject] = useState<GalleryProject | null>(null);
 
@@ -51,7 +53,7 @@ export default function GallerySection() {
         <div className="w-full flex-1 mt-8 transition-opacity duration-500">
           {activeMode === 'cinematic' && <CinematicView projects={filteredProjects} onProjectClick={setActiveProject} />}
           {activeMode === 'technical' && <TechnicalView projects={filteredProjects} onProjectClick={setActiveProject} />}
-          {/* {activeMode === 'grid' && <GridView projects={filteredProjects} onProjectClick={setActiveProject} />} */}
+          {activeMode === 'tesseract' && <TesseractView projects={filteredProjects} onProjectClick={setActiveProject} activeCategory={activeCategory} isModalOpen={!!activeProject} />}
         </div>
       </div>
 

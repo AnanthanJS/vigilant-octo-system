@@ -53,12 +53,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <div className="w-full h-full flex flex-col items-center justify-center max-h-full">
                 {((project.videoUrl || project.thumbnailUrl) || '').endsWith('.mp4') ? (
                   <video 
+                    key={project.id}
                     src={project.videoUrl || project.thumbnailUrl} 
                     autoPlay 
                     controls
                     loop 
                     playsInline
                     className="w-full max-h-[70vh] lg:h-full object-contain rounded-lg"
+                    onClick={(e) => e.stopPropagation()}
                   />
                 ) : (
                   <img 
