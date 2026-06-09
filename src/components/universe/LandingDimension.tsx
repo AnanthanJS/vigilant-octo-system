@@ -4,6 +4,7 @@ import { useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useRef, useMemo } from 'react';
 import * as THREE from 'three';
+import Link from 'next/link';
 
 const Background = ({ position }: { position: [number, number, number] }) => {
   const groupRef = useRef<THREE.Group>(null);
@@ -29,7 +30,7 @@ const Background = ({ position }: { position: [number, number, number] }) => {
   );
 };
 
-const Content = ({ onEnterMind }: { onEnterMind: () => void }) => {
+const Content = () => {
   return (
     <div className="w-full max-w-7xl mx-auto px-8 flex flex-col justify-center h-full relative pointer-events-none">
       
@@ -57,15 +58,27 @@ const Content = ({ onEnterMind }: { onEnterMind: () => void }) => {
           </div>
         </div>
 
-        <div className="mt-20">
-          <button 
-            onClick={onEnterMind}
-            className="group relative inline-flex items-center gap-4 px-8 py-4 border border-cosmic-violet hover:border-soft-amber bg-space-black/50 backdrop-blur-md transition-colors overflow-hidden"
+        <div className="mt-20 flex flex-col sm:flex-row gap-6">
+          <Link 
+            href="/gallery"
+            className="group relative inline-flex items-center justify-center gap-4 px-8 py-4 border border-cosmic-violet hover:border-soft-amber bg-space-black/50 backdrop-blur-md transition-colors overflow-hidden"
           >
             <div className="absolute inset-0 bg-cosmic-violet/20 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-            <span className="relative z-10 font-mono text-xs tracking-[0.2em] uppercase text-soft-amber">Enter The Creative Mind</span>
+            <span className="relative z-10 font-mono text-xs tracking-[0.2em] uppercase text-soft-amber">View Work</span>
             <span className="relative z-10 text-cosmic-violet group-hover:text-soft-amber transition-colors">→</span>
-          </button>
+          </Link>
+          <a 
+            href="/resume"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center justify-center gap-4 px-8 py-4 border border-white/20 hover:border-white/50 bg-white/5 backdrop-blur-md transition-colors overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-white/10 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+            <span className="relative z-10 font-mono text-xs tracking-[0.2em] uppercase text-white/80 group-hover:text-white transition-colors">View Resume</span>
+            <svg className="relative z-10 w-4 h-4 text-white/50 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+          </a>
         </div>
       </div>
       

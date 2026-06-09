@@ -15,8 +15,7 @@ import SkillConstellation from './SkillConstellation';
 import FutureDimension from './FutureDimension';
 import ContactPortal from './ContactPortal';
 
-// The memory archive modal feature
-import CreativeMindArchive from './CreativeMindArchive';
+// The memory archive modal feature removed in favor of /gallery page
 
 // Helper to align 3D elements with HTML sections
 import { useThree } from '@react-three/fiber';
@@ -35,17 +34,6 @@ const Universe3D = () => {
 };
 
 export default function CreativeUniverse() {
-  const [archiveOpen, setArchiveOpen] = useState(false);
-
-  // If the user clicks "Enter The Creative Mind", we show the R3F modal over everything
-  if (archiveOpen) {
-    return (
-      <div className="fixed inset-0 z-50 bg-space-black">
-        <CreativeMindArchive onClose={() => setArchiveOpen(false)} />
-      </div>
-    );
-  }
-
   return (
     <div className="w-full h-screen bg-space-black overflow-hidden relative">
       <Canvas camera={{ position: [0, 0, 10], fov: 60 }} dpr={[1, 2]}>
@@ -70,7 +58,7 @@ export default function CreativeUniverse() {
                 
                 {/* 1. Landing Dimension (Hero) */}
                 <section className="min-h-screen w-full flex items-center justify-center relative">
-                  <LandingDimension.Content onEnterMind={() => setArchiveOpen(true)} />
+                  <LandingDimension.Content />
                 </section>
 
                 {/* 2. Identity Chamber (Arrival) */}
