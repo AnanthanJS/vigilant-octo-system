@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
-import { galleryData, ProjectCategory } from '@/lib/gallery-data';
+import { useState, useMemo } from 'react';
+import { ProjectCategory, GalleryProject } from '@/lib/gallery-data';
 import GalleryHeader from './GalleryHeader';
 import CinematicView from './views/CinematicView';
 import TechnicalView from './views/TechnicalView';
@@ -9,26 +9,22 @@ import dynamic from 'next/dynamic';
 
 const TesseractView = dynamic(() => import('./views/TesseractView'), { ssr: false });
 import ProjectModal from './ProjectModal';
-import { GalleryProject } from '@/lib/gallery-data';
 
-export default function GallerySection() {
+interface GallerySectionProps {
+  projects: GalleryProject[];
+}
+
+export default function GallerySection({ projects }: GallerySectionProps) {
   const [activeMode, setActiveMode] = useState<'cinematic' | 'technical' | 'tesseract'>('cinematic');
   const [activeCategory, setActiveCategory] = useState<ProjectCategory | 'All'>('All');
   const [activeProject, setActiveProject] = useState<GalleryProject | null>(null);
 
-  // Force grid view on mobile initially
-  // useEffect(() => {
-  //   if (window.innerWidth < 768) {
-  //     setActiveMode('grid');
-  //   }
-  // }, []);
-
   const categories: (ProjectCategory | 'All')[] = ['All', 'VFX', 'Video Editing', '2D Design', '3D Design', 'Branding'];
 
   const filteredProjects = useMemo(() => {
-    if (activeCategory === 'All') return galleryData;
-    return galleryData.filter(project => project.category === activeCategory);
-  }, [activeCategory]);
+    if (activeCategory === 'All') return projects;
+    return projects.filter(project => project.category === activeCategory);
+  }, [activeCategory, projects]);
 
   return (
     <section className="min-h-screen bg-space-black relative overflow-hidden flex flex-col">

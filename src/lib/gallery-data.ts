@@ -1,4 +1,16 @@
-export type ProjectCategory = 'VFX' | 'Branding' | 'Video Editing' | '2D Design'| '3D Design';
+import type { SanityProject } from '@/lib/sanity/queries'
+import { urlForString } from '@/lib/sanity/image'
+
+export type ProjectCategory =
+  | 'VFX'
+  | 'Motion Graphics'
+  | 'Video Editing'
+  | '2D Design'
+  | '3D Design'
+  | 'Branding'
+  | 'Illustration'
+  | 'Canva'
+  | 'Course'
 
 export interface GalleryProject {
   id: string;
@@ -22,6 +34,66 @@ export interface GalleryProject {
     nodes: number;
   };
 }
+
+/**
+ * Converts a raw SanityProject (from GROQ) into a GalleryProject.
+ * This adapter is the single bridge between the CMS data shape and
+ * the existing gallery components — nothing else needs to change.
+ */
+export function toGalleryProject(sp: SanityProject): GalleryProject {
+  // Portable Text → plain string (take first block's text only)
+  const description = Array.isArray(sp.description)
+    ? sp.description
+        .map((block) =>
+          block._type === 'block' && Array.isArray(block.children)
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ? (block.children as any[]).map((c: { text?: string }) => c.text ?? '').join('')
+            : ''
+        )
+        .join(' ')
+        .trim()
+    : ''
+
+  // Resolve the best video URL: uploaded file takes priority over external URL
+  const resolvedVideoUrl =
+    sp.videoFile?.asset?.url ||
+    sp.videoUrl ||
+    undefined
+
+  // Thumbnail: prefer Sanity CDN image, then uploaded video file, then external mp4
+  const thumbnailUrl =
+    urlForString(sp.thumbnailImage, '', 800) ||
+    (resolvedVideoUrl?.endsWith('.mp4') ? resolvedVideoUrl : '') ||
+    ''
+
+  return {
+    id: sp.slug?.current ?? sp._id,
+    title: sp.title ?? 'Untitled',
+    client: sp.client ?? '',
+    category: (sp.category ?? 'Branding') as ProjectCategory,
+    thumbnailUrl,
+    videoUrl: resolvedVideoUrl,
+    rawImageUrl:
+      urlForString(sp.beforeAfter?.rawImage, '', 1200) || undefined,
+    finalImageUrl:
+      urlForString(sp.beforeAfter?.finalImage, '', 1200) || undefined,
+    description,
+    layers: sp.layers?.map((l) => ({
+      name: l.name,
+      imageUrl: urlForString(l.image, '', 800),
+    })),
+    technicalStats: sp.technicalStats
+      ? {
+          renderTime: sp.technicalStats.renderTime ?? 'N/A',
+          software: sp.technicalStats.software ?? [],
+          polyCount: sp.technicalStats.polyCount,
+          resolution: sp.technicalStats.resolution ?? 'N/A',
+          nodes: sp.technicalStats.nodes ?? 0,
+        }
+      : undefined,
+  }
+}
+
 
 export const galleryData: GalleryProject[] = [
   {
