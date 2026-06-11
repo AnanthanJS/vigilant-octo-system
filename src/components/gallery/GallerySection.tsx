@@ -27,7 +27,7 @@ export default function GallerySection({ projects }: GallerySectionProps) {
   }, [activeCategory, projects]);
 
   return (
-    <section className="min-h-screen bg-space-black relative overflow-hidden flex flex-col">
+    <section className="min-h-dvh bg-space-black relative overflow-x-hidden flex flex-col">
       {/* Background ambient light */}
       <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-cosmic-violet/20 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-soft-amber/10 blur-[150px] rounded-full pointer-events-none" />

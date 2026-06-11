@@ -3,7 +3,7 @@
 // Inspired by Contact - Atmospheric communication portal
 export default function ContactPortal() {
   return (
-    <div className="w-full max-w-4xl mx-auto px-8 relative pointer-events-auto h-full flex flex-col justify-center items-center text-center">
+    <div className="w-full max-w-4xl mx-auto px-8 relative pointer-events-auto h-full flex flex-col justify-center items-center text-center pb-32 pt-12">
       
       <div className="mb-12">
         <h2 className="text-sm font-mono tracking-[0.5em] text-soft-amber uppercase mb-4 animate-pulse">Signal Entanglement</h2>

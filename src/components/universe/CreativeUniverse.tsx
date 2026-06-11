@@ -35,7 +35,7 @@ const Universe3D = () => {
 
 export default function CreativeUniverse() {
   return (
-    <div className="w-full h-screen bg-space-black overflow-hidden relative">
+    <div className="w-full h-dvh bg-space-black overflow-hidden relative">
       <Canvas camera={{ position: [0, 0, 10], fov: 60 }} dpr={[1, 2]}>
         <color attach="background" args={['#030305']} />
         <fog attach="fog" args={['#030305', 10, 30]} />
@@ -47,57 +47,57 @@ export default function CreativeUniverse() {
         <Stars radius={100} depth={50} count={3000} factor={4} saturation={0.5} fade speed={1} />
         
         <Suspense fallback={null}>
-          <ScrollControls pages={11} damping={0.2}>
+          <ScrollControls pages={12} damping={0.2}>
             
             {/* --- 3D WebGL LAYER (Moves in 3D space as you scroll) --- */}
             <Universe3D />
 
             {/* --- HTML OVERLAY LAYER (Tied to scroll progress) --- */}
             <Scroll html style={{ width: '100%' }}>
-              <div className="flex flex-col gap-[20vh] pb-[20vh] w-full text-pure-white">
+              <div className="flex flex-col gap-[20dvh] pb-[20dvh] w-full text-pure-white">
                 
                 {/* 1. Landing Dimension (Hero) */}
-                <section className="min-h-screen w-full flex items-center justify-center relative">
+                <section className="min-h-dvh w-full flex items-center justify-center relative">
                   <LandingDimension.Content />
                 </section>
 
                 {/* 2. Identity Chamber (Arrival) */}
-                <section className="min-h-screen w-full flex items-center justify-center">
+                <section className="min-h-dvh w-full flex items-center justify-center">
                   <IdentityChamber />
                 </section>
 
                 {/* 3. Creative Timeline (Interstellar) */}
-                <section className="min-h-screen w-full flex items-center justify-center">
+                <section className="min-h-dvh w-full flex items-center justify-center">
                   <CreativeTimeline />
                 </section>
 
                 {/* 4. Skill Constellation */}
-                <section className="min-h-screen w-full flex items-center justify-center">
+                <section className="min-h-dvh w-full flex items-center justify-center">
                   <SkillConstellation.Content />
                 </section>
 
                 {/* 5. Dream Layers (Inception) */}
-                <section className="min-h-screen w-full flex items-center justify-center">
+                <section className="min-h-dvh w-full flex items-center justify-center">
                   <DreamLayers />
                 </section>
 
                 {/* 6. The Design Lab (Doctor Strange) */}
-                <section className="min-h-screen w-full flex items-center justify-center">
+                <section className="min-h-dvh w-full flex items-center justify-center">
                   <DesignLab />
                 </section>
 
                 {/* 7. The Story Engine */}
-                <section className="min-h-screen w-full flex items-center justify-center">
+                <section className="min-h-dvh w-full flex items-center justify-center">
                   <StoryEngine />
                 </section>
 
                 {/* 8. Future Dimension (2001) */}
-                <section className="h-screen w-full flex items-center justify-center">
+                <section className="h-dvh w-full flex items-center justify-center">
                   <FutureDimension />
                 </section>
 
                 {/* 9. Contact Portal */}
-                <section className="h-screen w-full flex items-center justify-center">
+                <section className="min-h-dvh w-full flex items-center justify-center">
                   <ContactPortal />
                 </section>
 

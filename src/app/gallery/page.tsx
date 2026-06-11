@@ -29,7 +29,7 @@ export default async function GalleryPage() {
   }
 
   return (
-    <main className="min-h-screen bg-space-black selection:bg-cosmic-violet/50 selection:text-soft-amber relative">
+    <main className="min-h-dvh bg-space-black selection:bg-cosmic-violet/50 selection:text-soft-amber relative">
       <div className="absolute top-8 left-8 z-50">
         <Link 
           href="/"
