@@ -42,7 +42,7 @@ export const project = defineType({
         list: [
           { title: 'VFX', value: 'VFX' },
           { title: 'Motion Graphics', value: 'Motion Graphics' },
-          { title: 'Video Editing', value: 'Video Editing' },
+          { title: 'Editing', value: 'Editing' },
           { title: '2D Design', value: '2D Design' },
           { title: '3D Design', value: '3D Design' },
           { title: 'Branding', value: 'Branding' },
@@ -53,6 +53,26 @@ export const project = defineType({
         layout: 'radio',
       },
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'subCategory',
+      title: 'Subcategory',
+      type: 'string',
+      group: 'content',
+      hidden: ({ document }) => document?.category !== 'Editing',
+      options: {
+        list: [
+          { title: 'Video Edit', value: 'Video Edit' },
+          { title: 'Image Edit', value: 'Image Edit' },
+        ],
+        layout: 'radio',
+      },
+      validation: (Rule) => Rule.custom((value, context) => {
+        if (context.document?.category === 'Editing' && !value) {
+          return 'Subcategory is required when Editing is selected'
+        }
+        return true
+      }),
     }),
     defineField({
       name: 'description',

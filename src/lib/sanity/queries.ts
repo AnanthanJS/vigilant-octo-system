@@ -45,10 +45,11 @@ export interface SanityBeforeAfter {
 export interface SanityProject {
   _id: string
   _type: 'project'
-  title: string
-  slug: { current: string }
+  title?: string
+  slug?: { current: string }
   client?: string
   category?: string
+  subCategory?: string
   description?: PortableTextBlock[]
   thumbnailImage?: SanityImageAsset
   videoUrl?: string
@@ -75,6 +76,7 @@ const projectProjection = groq`{
   "slug": slug.current,
   client,
   category,
+  subCategory,
   description,
   thumbnailImage { ..., asset->{ _id, url, metadata { dimensions, lqip } } },
   videoUrl,

@@ -4,7 +4,7 @@ import { urlForString } from '@/lib/sanity/image'
 export type ProjectCategory =
   | 'VFX'
   | 'Motion Graphics'
-  | 'Video Editing'
+  | 'Editing'
   | '2D Design'
   | '3D Design'
   | 'Branding'
@@ -17,6 +17,7 @@ export interface GalleryProject {
   title: string;
   client: string;
   category: ProjectCategory;
+  subCategory?: string;
   thumbnailUrl: string;
   videoUrl?: string; // For Cinematic/Hero mode
   rawImageUrl?: string; // For Before/After slider
@@ -70,7 +71,8 @@ export function toGalleryProject(sp: SanityProject): GalleryProject {
     id: sp.slug?.current ?? sp._id,
     title: sp.title ?? 'Untitled',
     client: sp.client ?? '',
-    category: (sp.category ?? 'Branding') as ProjectCategory,
+    category: (sp.category === 'Video Editing' ? 'Editing' : sp.category ?? 'Branding') as ProjectCategory,
+    subCategory: sp.subCategory,
     thumbnailUrl,
     videoUrl: resolvedVideoUrl,
     rawImageUrl:
@@ -100,7 +102,8 @@ export const galleryData: GalleryProject[] = [
     id: 'glimpse-of-trivandrum',
     title: 'Glimpse of Trivandrum',
     client: 'Personal Project',
-    category: 'Video Editing',
+    category: 'Editing',
+    subCategory: 'Video Edit',
     thumbnailUrl: '/memories/Sequence 06_1.mp4',
     videoUrl: '/memories/Sequence 06_1.mp4',
     rawImageUrl: '/memories/Business-Card-Mockup-1.jpg', // Placeholder for before/after demo

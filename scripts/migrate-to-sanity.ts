@@ -38,6 +38,7 @@ interface MockProject {
   title: string
   client: string
   category: string
+  subCategory?: string
   thumbnailUrl: string
   videoUrl?: string
   rawImageUrl?: string
@@ -58,7 +59,8 @@ const galleryData: MockProject[] = [
     id: 'glimpse-of-trivandrum',
     title: 'Glimpse of Trivandrum',
     client: 'Personal Project',
-    category: 'Video Editing',
+    category: 'Editing',
+    subCategory: 'Video Edit',
     thumbnailUrl: '/memories/Sequence 06_1.mp4',
     videoUrl: '/memories/Sequence 06_1.mp4',
     rawImageUrl: '/memories/Business-Card-Mockup-1.jpg',
@@ -234,6 +236,7 @@ function toSanityDocument(p: MockProject) {
     slug: { _type: 'slug', current: p.id },
     client: p.client,
     category: p.category,
+    subCategory: p.subCategory,
     description: descriptionBlocks,
     // thumbnailImage is intentionally left empty here.
     // Images stored in /public/memories/ are local files — use Sanity Studio

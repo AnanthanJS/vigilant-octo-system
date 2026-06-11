@@ -68,7 +68,7 @@ export default function CinematicView({ projects, onProjectClick }: CinematicVie
               
               <div className="absolute bottom-0 left-0 p-8 w-full">
                 <p className="font-mono text-xs text-soft-amber mb-3 tracking-[0.2em] uppercase">
-                  {project.category}
+                  {project.subCategory || project.category}
                 </p>
                 <h3 className="text-3xl font-serif text-white mb-4 drop-shadow-md">
                   {project.title}

@@ -35,7 +35,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div className="flex justify-between items-center p-6 border-b border-white/10 bg-space-black shrink-0">
             <div>
               <h3 className="text-2xl font-serif text-white">{project.title}</h3>
-              <p className="font-mono text-xs text-soft-amber mt-2 uppercase tracking-widest">{project.category} // {project.client}</p>
+              <p className="font-mono text-xs text-soft-amber mt-2 uppercase tracking-widest">{project.subCategory || project.category} // {project.client}</p>
             </div>
             <button 
               onClick={onClose}

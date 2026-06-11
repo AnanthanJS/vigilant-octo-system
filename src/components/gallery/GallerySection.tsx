@@ -19,7 +19,7 @@ export default function GallerySection({ projects }: GallerySectionProps) {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory | 'All'>('All');
   const [activeProject, setActiveProject] = useState<GalleryProject | null>(null);
 
-  const categories: (ProjectCategory | 'All')[] = ['All', 'VFX', 'Video Editing', '2D Design', '3D Design', 'Branding'];
+  const categories: (ProjectCategory | 'All')[] = ['All', 'VFX', 'Editing', '2D Design', '3D Design', 'Branding'];
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === 'All') return projects;
